@@ -1,10 +1,14 @@
 ﻿@model List<KitapTuru>
 
-
-<h1>Kitap Türleri</h1>
+<div class="container">
+	<div class="row pt-3 pb-4"
+	<div>
+		<h1>Kitap Türleri</h1>
+	</div>
+	</div>
 <table class="table table-bordered">
 	<thead>
-	<tr>
+		<tr>
 		<th>
 			Kitap Türü
 		</th>
@@ -14,8 +18,16 @@
 		@foreach(var KitapTuru in Model)
 		{
 			<tr>
-				<td>@KitapTuru.Ad</td>
+				<td>@KitapTuru.Id - @KitapTuru.Ad</td>
 			</tr>
 		}
 	</tbody>
 </table>
+	<div class="row pt-3 pb-2">
+		<div>
+			<a asp-controller="KitapTuru" asp-action="Ekle" class="btn btn-lg btn-primary" type="button">
+				Yeni Kitap Türü Oluştur
+			</a>
+		</div>
+	</div>
+</div>
