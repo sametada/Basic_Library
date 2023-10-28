@@ -7,7 +7,8 @@ namespace WebApplication_01.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Kitap Tür adı boş bırakılamaz!")]
+        [MaxLength(25)]
         [DisplayName("Kitap Türü Adı")]
         public string Ad { get; set; }
 
