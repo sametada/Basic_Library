@@ -29,6 +29,7 @@ namespace WebApplication_01.Controllers
             {
 				_uygulamaDbContext.KitapTurleri.Add(kitapTuru);
 				_uygulamaDbContext.SaveChanges();
+                TempData["basarili"] = "Kitap Türü başarıyla oluşturuldu";
 				return RedirectToAction("Index", "KitapTuru");
 			}
             return View();
@@ -54,7 +55,8 @@ namespace WebApplication_01.Controllers
 			{
 				_uygulamaDbContext.KitapTurleri.Update(kitapTuru);
 				_uygulamaDbContext.SaveChanges();
-				return RedirectToAction("Index", "KitapTuru");
+                TempData["basarili"] = "Kitap Türü başarıyla güncellendi";
+                return RedirectToAction("Index", "KitapTuru");
 			}
 			return View();
 		}
@@ -81,6 +83,7 @@ namespace WebApplication_01.Controllers
             }
             _uygulamaDbContext.KitapTurleri.Remove(kitapTuru);
             _uygulamaDbContext.SaveChanges();
+            TempData["basarili"] = "Kitap Türü başarıyla silindi";
             return RedirectToAction("Index", "KitapTuru");
         }
 
