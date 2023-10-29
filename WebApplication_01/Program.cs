@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication_01.Models;
 using WebApplication_01.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IKitapTuruRepository, KitapTuruRepository>(); // _kitapTuruRepository nesnesinin oluþturulmasýný saðlar deoendency injection
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
