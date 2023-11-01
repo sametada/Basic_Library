@@ -11,6 +11,7 @@ builder.Services.AddDbContext<UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IKitapTuruRepository, KitapTuruRepository>(); // _kitapTuruRepository nesnesinin oluþturulmasýný saðlar deoendency injection
+builder.Services.AddScoped<IKitapRepository, KitapRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

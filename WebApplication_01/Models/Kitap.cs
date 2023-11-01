@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication_01.Models
 {
 	public class Kitap
 	{
+		
 		[Key]
 		public int Id { get; set; }
 		[Required]
@@ -14,7 +16,11 @@ namespace WebApplication_01.Models
 		[Required]
 		[Range(10, 5000)]
 		public double Fiyat { get; set; }
-		
+
+		public int KitapTuruId {  get; set; }
+		[ForeignKey("KitapTuruId")]
+		public KitapTuru KitapTuru { get; set; }
+		public string ResimUrl {  get; set; }	
 
 	}
 }
