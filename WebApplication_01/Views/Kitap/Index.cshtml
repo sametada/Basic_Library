@@ -46,7 +46,7 @@
 				<td>@Kitap.Fiyat</td>
 				<td></td>
 				<td>
-				<a asp-controller="Kitap" asp-action="Guncelle" asp-route-id="@Kitap.Id" type="button" class="btn btn-success" style="width:250px">
+				<a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@Kitap.Id" type="button" class="btn btn-success" style="width:250px">
 				Güncelle
 				</a>
 				</td>
@@ -61,7 +61,7 @@
 </table>
 	<div class="row pt-3 pb-2">
 		<div>
-			<a asp-controller="Kitap" asp-action="Ekle" class="btn btn-lg btn-primary" type="button">
+			<a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">
 				Yeni Kitap Ekle
 			</a>
 		</div>

@@ -21,7 +21,7 @@ namespace WebApplication_01.Controllers
             return View(objKitapList);
         }
 
-        public IActionResult Ekle ()
+        public IActionResult EkleGuncelle (int? id)
         {
 			IEnumerable<SelectListItem> KitapTuruList = _kitapTuruRepository.GetAll().Select(k => new SelectListItem
 			{
@@ -29,10 +29,25 @@ namespace WebApplication_01.Controllers
 				Value = k.Id.ToString()
 			});
             ViewBag.KitapTuruList = KitapTuruList; // controller dan view e veri aktarma tek yönlüdür view den controllar a aktarılmaz
-			return View();
+
+            if(id==null || id == 0)
+            {
+                //ekleme
+                return View();
+            }
+            else
+            {
+				//guncelleme 
+				Kitap? kitapVt = _kitapRepository.Get(u => u.Id == id);
+				if (kitapVt == null)
+				{
+					return NotFound();
+				}
+				return View(kitapVt);
+			}
         }
         [HttpPost]
-		public IActionResult Ekle(Kitap kitap)
+		public IActionResult EkleGuncelle(Kitap kitap, IFormFile? File)
 		{
             if (ModelState.IsValid)
             {
@@ -43,7 +58,7 @@ namespace WebApplication_01.Controllers
 			}
             return View();
 		}
-
+		/*
 		public IActionResult Guncelle(int? id)
 		{
 			if(id==null || id==0)
@@ -68,8 +83,8 @@ namespace WebApplication_01.Controllers
                 return RedirectToAction("Index", "Kitap");
 			}
 			return View();
-		}
-        public IActionResult Sil(int? id)
+		}*/
+		public IActionResult Sil(int? id)
         {
             if (id == null || id == 0)
             {

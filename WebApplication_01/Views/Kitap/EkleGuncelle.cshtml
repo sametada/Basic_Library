@@ -3,7 +3,7 @@
 <form method="post" enctype="multipart/form-data">
 	<div class="border p-3 mt-5">
 		<div class="row pb-3">
-			<h2 class="text-primary">Kitap Ekle</h2>
+			<h2 class="text-primary">@(Model==null?"Kitap Ekle":"Kitap Güncelle")</h2>
 			
 		</div>
 		<div class="mb-3">
@@ -41,10 +41,14 @@
 			<label asp-for="ResimUrl" class="p-0"></label>
 			<input type="file" class="form-control" />
 		</div>
-		
-		<button type="submit" class="btn btn-lg btn-primary" style="width:250px">
-			Ekle
-		</button>		
+		@if (Model !=null)
+		{
+		<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kitap Guncelle</button>
+		}
+		else{
+		<button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kitap Ekle</button>
+		}
+	
 		<a asp-controller="Kitap" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
 			Kitaplara geri dön
 		</a>
