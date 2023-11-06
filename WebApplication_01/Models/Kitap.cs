@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication_01.Models
@@ -17,9 +18,13 @@ namespace WebApplication_01.Models
 		[Range(10, 5000)]
 		public double Fiyat { get; set; }
 
+		[ValidateNever]
 		public int KitapTuruId {  get; set; }
 		[ForeignKey("KitapTuruId")]
+		[ValidateNever]
 		public KitapTuru KitapTuru { get; set; }
+
+		[ValidateNever]
 		public string ResimUrl {  get; set; }	
 
 	}

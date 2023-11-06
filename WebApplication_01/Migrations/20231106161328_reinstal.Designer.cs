@@ -11,8 +11,8 @@ using WebApplication_01.Utility;
 namespace WebApplication_01.Migrations
 {
     [DbContext(typeof(UygulamaDbContext))]
-    [Migration("20231101003132_ResimUrlEkleme")]
-    partial class ResimUrlEkleme
+    [Migration("20231106161328_reinstal")]
+    partial class reinstal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
