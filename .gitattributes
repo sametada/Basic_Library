@@ -11,7 +11,7 @@
 # Note: This is only used by command line
 ###############################################################################
 #*.cs     diff=csharp
-
+ 
 ###############################################################################
 # Set the merge driver for project and solution files
 #
@@ -43,7 +43,7 @@
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
-
+ 
 ###############################################################################
 # diff behavior for common document formats
 # 
