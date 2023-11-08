@@ -19,7 +19,7 @@ namespace WebApplication_01.Controllers
         }   
         public IActionResult Index()
         {
-            List<Kitap> objKitapList = _kitapRepository.GetAll().ToList();
+            List<Kitap> objKitapList = _kitapRepository.GetAll(includeProps:"KitapTuru").ToList();
             return View(objKitapList);
         }
 
@@ -55,16 +55,28 @@ namespace WebApplication_01.Controllers
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 string kitapPath = Path.Combine(wwwRootPath, @"img");
-
-                using (var filestream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+                if (file != null)
                 {
-                    file.CopyTo(filestream);
-                }
-                kitap.ResimUrl = @"\img\" + file.FileName;
+					using (var filestream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+					{
+						file.CopyTo(filestream);
+					}
+					kitap.ResimUrl = @"\img\" + file.FileName;
+				}
 
-				_kitapRepository.Ekle(kitap);
+
+                if (kitap.Id==0)
+                {
+					_kitapRepository.Ekle(kitap);
+					TempData["basarili"] = "Kitap başarıyla oluşturuldu";
+				}
+                else
+                {
+                    _kitapRepository.Guncelle(kitap);
+					TempData["basarili"] = "Kitap başarıyla güncellendi";
+				}
 				_kitapRepository.Kaydet();
-                TempData["basarili"] = "Kitap başarıyla oluşturuldu";
+
 				return RedirectToAction("Index", "Kitap");
 			}
             return View();
