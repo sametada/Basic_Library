@@ -12,6 +12,7 @@ builder.Services.AddDbContext<UygulamaDbContext>(options =>
 
 builder.Services.AddScoped<IKitapTuruRepository, KitapTuruRepository>(); // _kitapTuruRepository nesnesinin oluþturulmasýný saðlar deoendency injection
 builder.Services.AddScoped<IKitapRepository, KitapRepository>();
+builder.Services.AddScoped<IKiralamaRepository, KiralamaRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
