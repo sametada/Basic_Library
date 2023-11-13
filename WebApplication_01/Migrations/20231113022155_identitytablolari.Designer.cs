@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication_01.Utility;
 
@@ -11,9 +12,11 @@ using WebApplication_01.Utility;
 namespace WebApplication_01.Migrations
 {
     [DbContext(typeof(UygulamaDbContext))]
-    partial class UygulamaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231113022155_identitytablolari")]
+    partial class identitytablolari
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,10 +89,6 @@ namespace WebApplication_01.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -141,10 +140,6 @@ namespace WebApplication_01.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -306,25 +301,6 @@ namespace WebApplication_01.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("KitapTurleri");
-                });
-
-            modelBuilder.Entity("WebApplication_01.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Adres")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Bolum")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fakulte")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Ogrencino")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

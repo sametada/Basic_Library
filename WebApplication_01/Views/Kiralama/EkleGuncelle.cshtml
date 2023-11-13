@@ -1,7 +1,8 @@
 ﻿@model Kiralama
-
+	
 <form method="post" enctype="multipart/form-data">
-	<div class="row">
+	<div class="row" >
+		<div class="col-10">
 			<div class="border p-3 mt-5">
 				<div class="row pb-3">
 					<h2 class="text-primary">@(Model == null ? "Yeni Kiralama" : "Kiralama Güncelle")</h2>
@@ -34,6 +35,15 @@
 					Kiralamalara geri dön
 				</a>
 			</div>
+		</div>
+		<div class="col-2">
+			@if (Model != null)
+			{
+				<br><br />
+				<img src="@Model.Kitap.ResimUrl" width="100%"
+					 style="border-radius:7px; border:1px; solid #bbb9b9" />
+			}
+		</div>
 	</div>
 
 
