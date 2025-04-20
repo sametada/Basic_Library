@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication_01.Models;
 using WebApplication_01.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +12,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UygulamaDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UygulamaDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IKitapTuruRepository, KitapTuruRepository>(); // _kitapTuruRepository nesnesinin olu�turulmas�n� sa�lar deoendency injection
 builder.Services.AddScoped<IKitapRepository, KitapRepository>();
 builder.Services.AddScoped<IKiralamaRepository, KiralamaRepository>();
+builder.Services.AddScoped<IEmailSender, EmailSender>(); // IEmailSender arayüzünü uygulayan EmailSender sınıfını ekliyoruz
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
